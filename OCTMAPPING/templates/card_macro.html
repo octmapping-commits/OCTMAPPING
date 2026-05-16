@@ -1,0 +1,28 @@
+<div class="item-card relative overflow-hidden">
+    
+    <div class="absolute top-3 right-3 z-20 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md">
+        在庫: {{ p.stock }}
+    </div>
+
+    <div class="aspect-square bg-zinc-50 mb-6 overflow-hidden flex items-center justify-center relative border border-zinc-100">
+        
+        {% if p.has_image %}
+            <img src="/img/{{ p.id }}" alt="{{ p.title }}" class="w-full h-full object-cover">
+        {% else %}
+            <span class="text-5xl select-none">
+                {% if p.category == 'karakuri' %}⚙️
+                {% elif p.category == 'electronics' %}⚡
+                {% else %}💎{% endif %}
+            </span>
+        {% endif %}
+
+        {% if p.stock == 0 %}
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-[1px] flex items-center justify-center z-10">
+                <span class="text-white text-xs font-bold tracking-widest border border-white px-4 py-2 bg-black/20">在庫なし</span>
+            </div>
+        {% endif %}
+    </div>
+
+    <h4 class="font-bold text-lg mb-2 text-zinc-800">{{ p.title }}</h4>
+    <p class="text-xs text-zinc-500 leading-loose whitespace-pre-line">{{ p.description }}</p>
+</div>
